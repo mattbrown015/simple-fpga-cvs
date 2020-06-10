@@ -9,6 +9,7 @@
 module simple_fpga_cvs_tb();
     // 'reg' can store a logic state
     reg clock;
+    wire clock_out;
 
     always begin
         // '#' is unsynthesizable element that specifies simulation delay
@@ -19,5 +20,5 @@ module simple_fpga_cvs_tb();
         clock = 0;
     end
 
-    simple_fpga_cvs simple_fpga_cvs(clock);
+    simple_fpga_cvs simple_fpga_cvs(clock, clock_out);
 endmodule
