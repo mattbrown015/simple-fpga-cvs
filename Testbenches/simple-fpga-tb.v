@@ -18,4 +18,6 @@ module simple_fpga_cvs_tb();
     initial begin
         clock = 0;
     end
+
+    simple_fpga_cvs simple_fpga_cvs(clock);
 endmodule
