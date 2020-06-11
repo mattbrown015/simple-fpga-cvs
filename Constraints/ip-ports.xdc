@@ -22,5 +22,6 @@ set_property PACKAGE_PIN N22 [get_ports {out[4]}]
 set_property IOSTANDARD LVDS [get_ports {osc_300_pn[0]}]
 set_property IOSTANDARD LVDS [get_ports {osc_300_pn[1]}]
 set_property PACKAGE_PIN AK17 [get_ports {osc_300_pn[0]}]
-set_property PACKAGE_PIN G27 [get_ports osc_300_out]
-set_property IOSTANDARD LVCMOS18 [get_ports osc_300_out]
+set_property PACKAGE_PIN G27 [get_ports clk_out]
+set_property IOSTANDARD LVCMOS18 [get_ports clk_out]
+
