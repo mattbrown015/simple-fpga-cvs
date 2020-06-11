@@ -13,6 +13,7 @@ module simple_fpga_cvs_tb();
 
     reg osc_300;
     wire osc_300_pn[1:0];
+    wire osc_300_out;
 
     assign osc_300_pn = '{!osc_300, osc_300};
 
@@ -24,5 +25,5 @@ module simple_fpga_cvs_tb();
         osc_300 = 0;
     end
 
-    simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, out);
+    simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, out, osc_300_pn, osc_300_out);
 endmodule
