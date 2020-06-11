@@ -14,7 +14,7 @@ module simple_fpga_cvs_tb();
     reg osc_300;
     wire osc_300_pn[1:0];
 
-    assign osc_300_pn = '{osc_300, !osc_300};
+    assign osc_300_pn = '{!osc_300, osc_300};
 
     always #1 clock = !clock;
     always #1666.666 osc_300 = !osc_300; // 300 MHz, period is 3333.333 ps but the state change frequency is 600 MHz so delay is 1666.666
