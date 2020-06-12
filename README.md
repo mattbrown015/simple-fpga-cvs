@@ -42,3 +42,6 @@ This is a summary of the history of this repo.
 1. Synthesis design
 1. Specify I/O ports for KCU105 in Vivado, create constraints file using Vivado
 1. Connect design to to KCU105 user buttons, LEDs and user SMA connectors
+1. Connect design to KCU105 oscillator and instance MMCM to create a clock for the design
+   * [UltraScale Architecture Clocking Resources UG572](https://www.xilinx.com/support/documentation/user_guides/ug572-ultrascale-clocking.pdf)
+   * [What is a Clock in an FPGA?](https://www.youtube.com/watch?v=htwlb-DuEK8)
