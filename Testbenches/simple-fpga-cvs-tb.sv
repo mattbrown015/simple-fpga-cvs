@@ -8,10 +8,10 @@
 
 module simple_fpga_cvs_tb();
     // 'reg' can store a logic state
-    reg clock;
+    reg clock = 1'b0;
     wire out[4:0];
 
-    reg osc_300;
+    reg osc_300 = 1'b0;
     wire osc_300_pn[1:0];
     wire clk_out;
 
@@ -19,11 +19,6 @@ module simple_fpga_cvs_tb();
 
     always #1 clock = !clock;
     always #1666.666 osc_300 = !osc_300; // 300 MHz, period is 3333.333 ps but the state change frequency is 600 MHz so delay is 1666.666
-
-    initial begin
-        clock = 0;
-        osc_300 = 0;
-    end
 
     simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, out, osc_300_pn, clk_out);
 endmodule
