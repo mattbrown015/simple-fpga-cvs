@@ -19,7 +19,7 @@ module simple_fpga_cvs(
     MMCME3_BASE #(
         .CLKFBOUT_MULT_F(2.0),
         .CLKIN1_PERIOD(3.333),
-        .CLKOUT0_DIVIDE_F(2.0)
+        .CLKOUT0_DIVIDE_F(60.0)
     )
     MMCME3_BASE_inst (
         .CLKOUT0(clk_out),
