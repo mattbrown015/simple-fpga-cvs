@@ -8,7 +8,7 @@ module simple_fpga_cvs(
     );
 
     wire osc_300;
-    wire clkfb;
+    wire clk_fb;
 
     // IBUFDS: Differential Input Buffer
     //         Kintex UltraScale+
@@ -32,10 +32,10 @@ module simple_fpga_cvs(
     MMCME3_BASE_inst (
         // Clock Outputs outputs: User configurable clock outputs
         .CLKOUT0(clk_out),     // 1-bit output: CLKOUT0
-        .CLKFBOUT(clkfb),      // 1-bit output: Feedback clock
+        .CLKFBOUT(clk_fb),     // 1-bit output: Feedback clock
         .CLKIN1(osc_300),      // 1-bit input: Clock
         // Feedback inputs: Clock feedback ports
-        .CLKFBIN(clkfb)        // 1-bit input: Feedback clock
+        .CLKFBIN(clk_fb)       // 1-bit input: Feedback clock
     );
 
     // End of MMCME3_BASE_inst instantiation
