@@ -2,7 +2,10 @@
 
 module simple_fpga_cvs(
     input logic in[4:0],
-    output logic out[4:0],
+    output logic in0_out,
+    output logic in0_and_in1_out,
+    output logic in0_or_in1_out,
+    output logic not_in2_out,
     input logic osc_300_pn[1:0],
     output logic clk_out
     );
@@ -28,5 +31,8 @@ module simple_fpga_cvs(
         .CLKFBIN(clk_fb)
     );
 
-    assign out = in;
+    assign in0_out = in[0];
+    assign in0_and_in1_out = in[0] && in[1];
+    assign in0_or_in1_out = in[0] || in[1];
+    assign not_in2_out = !in[2];
 endmodule
