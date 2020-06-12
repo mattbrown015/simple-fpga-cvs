@@ -8,12 +8,12 @@
 
 module simple_fpga_cvs_tb();
     // 'reg' can store a logic state
-    reg clock = 1'b0;
-    wire out[4:0];
+    logic clock = 1'b0;
+    logic out[4:0];
 
-    reg osc_300 = 1'b0;
-    wire osc_300_pn[1:0];
-    wire clk_out;
+    logic osc_300 = 1'b0;
+    logic osc_300_pn[1:0];
+    logic clk_out;
 
     assign osc_300_pn = '{!osc_300, osc_300};
 

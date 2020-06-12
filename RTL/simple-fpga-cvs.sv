@@ -1,14 +1,14 @@
 `timescale 1ps / 1ps
 
 module simple_fpga_cvs(
-    input wire in[4:0],
-    output wire out[4:0],
-    input wire osc_300_pn[1:0],
-    output wire clk_out
+    input logic in[4:0],
+    output logic out[4:0],
+    input logic osc_300_pn[1:0],
+    output logic clk_out
     );
 
-    wire osc_300;
-    wire clk_fb;
+    logic osc_300;
+    logic clk_fb;
 
     IBUFDS IBUFDS_inst (
         .O(osc_300),
