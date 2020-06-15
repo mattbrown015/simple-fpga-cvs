@@ -1,3 +1,6 @@
+set_property CONFIG_VOLTAGE 1.8 [current_design]
+set_property CFGBVS GND [current_design]
+
 set_property IOSTANDARD LVCMOS18 [get_ports {in[0]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {in[1]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {in[2]}]
