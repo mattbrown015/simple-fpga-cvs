@@ -23,3 +23,4 @@ set_property IOSTANDARD LVDS [get_ports {osc_300_pn[0]}]
 set_property IOSTANDARD LVDS [get_ports {osc_300_pn[1]}]
 set_property PACKAGE_PIN AK17 [get_ports {osc_300_pn[0]}]
 
+create_clock -period 3.333 -name {osc_300_pn[0]} -waveform {0.000 1.667} [get_ports {osc_300_pn[0]}]
