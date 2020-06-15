@@ -21,15 +21,15 @@ module simple_fpga_cvs(
         .IB(osc_300_pn[1])
     );
 
-    MMCME3_BASE #(
-        .CLKFBOUT_MULT_F(2.0),
-        .CLKIN1_PERIOD(3.333),
-        .CLKOUT0_DIVIDE_F(60.0)
+    PLLE3_BASE #(
+        .CLKFBOUT_MULT(2),
+        .CLKIN_PERIOD(3.333),
+        .CLKOUT0_DIVIDE(60.0)
     )
-    MMCME3_BASE_inst (
+    PLLE3_BASE_inst (
         .CLKOUT0(clk_10mhz),
         .CLKFBOUT(clk_fb),
-        .CLKIN1(osc_300),
+        .CLKIN(osc_300),
         .CLKFBIN(clk_fb)
     );
 
