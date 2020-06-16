@@ -45,3 +45,7 @@ This is a summary of the history of this repo.
 1. Connect design to KCU105 oscillator and instance MMCM to create a clock for the design
    * [UltraScale Architecture Clocking Resources UG572](https://www.xilinx.com/support/documentation/user_guides/ug572-ultrascale-clocking.pdf)
    * [What is a Clock in an FPGA?](https://www.youtube.com/watch?v=htwlb-DuEK8)
+1. Created simple combinational logic i.e. switch user LEDs based of boolean logic functions on user button
+1. Created some sequential logic to create slow, 1.2 Hz, clock from 10 MHz main clock. Used slow clock to flash user LED
+1. Added 300 MHz input oscillator to the constraints. This seems like the correct thing to do although I not sure of the significance yet
+1. Replaced MMCM block with a PLL block because the DRC suggested a PLL was adequate for the job at hand and would make synthesis/implementation better/easier/more flexible
