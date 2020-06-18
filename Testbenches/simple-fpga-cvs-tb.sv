@@ -7,6 +7,8 @@
 `timescale 1ns / 1ps
 
 module simple_fpga_cvs_tb();
+    parameter osc_300_period = 3.333;
+
     // 'reg' can store a logic state
     logic clock = 1'b0;
     logic in0_out;
@@ -14,14 +16,19 @@ module simple_fpga_cvs_tb();
     logic in0_or_in1_out;
     logic not_in2_out;
 
-    logic osc_300 = 1'b0;
-    logic osc_300_pn[1:0];
+    logic osc_300_p;
+    logic osc_300_n;
     logic clk_1point5hz;
 
-    assign osc_300_pn = '{!osc_300, osc_300};
-
     always #1 clock = !clock;
-    always #1.666 osc_300 = !osc_300; // 300 MHz, period is 3.333 ns but the state change frequency is 600 MHz so delay is 1.666
+
+    always begin
+        osc_300_p = 1'b0;
+        osc_300_n = 1'b1;
+        #(osc_300_period / 2) osc_300_p = 1'b1;
+        osc_300_n = 1'b0;
+        #(osc_300_period / 2);
+    end
 
     initial begin
         $display ("start");
@@ -32,5 +39,5 @@ module simple_fpga_cvs_tb();
         $finish;
     end
 
-    simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_pn, clk_1point5hz);
+    simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_p, osc_300_n, clk_1point5hz);
 endmodule

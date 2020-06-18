@@ -22,8 +22,8 @@ set_property PACKAGE_PIN P20 [get_ports in0_or_in1_out]
 set_property PACKAGE_PIN P21 [get_ports not_in2_out]
 set_property PACKAGE_PIN P23 [get_ports clk_1point5hz]
 
-set_property IOSTANDARD LVDS [get_ports {osc_300_pn[0]}]
-set_property IOSTANDARD LVDS [get_ports {osc_300_pn[1]}]
-set_property PACKAGE_PIN AK17 [get_ports {osc_300_pn[0]}]
+set_property IOSTANDARD LVDS [get_ports {osc_300_p}]
+set_property IOSTANDARD LVDS [get_ports {osc_300_n]
+set_property PACKAGE_PIN AK17 [get_ports {osc_300_p}]
 
-create_clock -period 3.333 -name {osc_300_pn[0]} -waveform {0.000 1.667} [get_ports {osc_300_pn[0]}]
+create_clock -period 3.333 -name osc_300_p -waveform {0.000 1.667} [get_ports osc_300_p]

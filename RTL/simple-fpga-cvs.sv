@@ -6,7 +6,8 @@ module simple_fpga_cvs(
     output logic in0_and_in1_out,
     output logic in0_or_in1_out,
     output logic not_in2_out,
-    input logic osc_300_pn[1:0],
+    input logic osc_300_p,
+    input logic osc_300_n,
     output logic clk_1point5hz
     );
 
@@ -16,8 +17,8 @@ module simple_fpga_cvs(
 
     IBUFDS IBUFDS_inst (
         .O(osc_300),
-        .I(osc_300_pn[0]),
-        .IB(osc_300_pn[1])
+        .I(osc_300_p),
+        .IB(osc_300_n)
     );
 
     PLLE3_BASE #(
