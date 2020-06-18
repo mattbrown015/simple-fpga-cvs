@@ -33,7 +33,7 @@ module simple_fpga_cvs_tb();
     initial begin
         $display ("start");
 
-        #100
+        #(100 * osc_300_period)
 
         $display ("finish");
         $finish;
