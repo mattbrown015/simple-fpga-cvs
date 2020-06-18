@@ -13,7 +13,6 @@ module simple_fpga_cvs(
     logic osc_300;
     logic clk_100mhz;
     logic clk_fb;
-    logic [25:0] clk_100mhz_count = 0;
 
     IBUFDS IBUFDS_inst (
         .O(osc_300),
@@ -37,6 +36,16 @@ module simple_fpga_cvs(
     assign in0_and_in1_out = in[0] && in[1];
     assign in0_or_in1_out = in[0] || in[1];
     assign not_in2_out = !in[2];
+
+    generate_1point5hz_clk generate_1point5hz_clk_inst(clk_100mhz, clk_1point5hz);
+endmodule
+
+module generate_1point5hz_clk(
+    input clk_100mhz,
+    output logic clk_1point5hz
+    );
+
+    logic [25:0] clk_100mhz_count = 0;
 
     // 100000000/2^22 = 2.98023223876953125
     // Bit 25 will toggle at 2.98 Hz hence the real frquency is 2.98/2 = 1.49 Hz
