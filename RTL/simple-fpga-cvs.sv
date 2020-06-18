@@ -1,4 +1,4 @@
-`timescale 1ps / 1ps
+`timescale 1ns / 1ps
 
 module simple_fpga_cvs(
     input logic in[4:0],
