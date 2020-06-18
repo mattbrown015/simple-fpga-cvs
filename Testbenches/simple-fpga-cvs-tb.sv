@@ -38,6 +38,7 @@ module simple_fpga_cvs_tb();
     end
 
     in0_out_tb in0_out_tb(in[0], in0_out);
+    in0_and_in1_out_tb in0_and_in1_out_tb(in[0], in[1], in0_and_in1_out);
 
     simple_fpga_cvs simple_fpga_cvs(in, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_p, osc_300_n, clk_1point5hz);
 endmodule
@@ -62,5 +63,42 @@ module in0_out_tb(output logic in0, input in0_out);
         in0 = 1;
         #0.001
         if (check_in0_out(in0, in0_out) != 1) $finish;
+    end
+endmodule
+
+module in0_and_in1_out_tb(output logic in0, output logic in1, input in0_and_in1_out);
+    function check_in0_and_in1_out(input logic in0, input logic in1, input logic in0_and_in1_out);
+        $display ("check_in0_and_in1_out");
+        if (in0_and_in1_out != in0 && in1) begin
+            $display ("in0_and_in1_out != in0 && in1");
+            return 0;
+        end
+        return 1;
+    endfunction
+
+    initial begin
+        #1
+        in0 = 0;
+        in1 = 0;
+        #0.001
+        if (check_in0_and_in1_out(in0, in1, in0_and_in1_out) != 1) $finish;
+
+        #1
+        in0 = 1;
+        in1 = 0;
+        #0.001
+        if (check_in0_and_in1_out(in0, in1, in0_and_in1_out) != 1) $finish;
+
+        #1
+        in0 = 0;
+        in1 = 1;
+        #0.001
+        if (check_in0_and_in1_out(in0, in1, in0_and_in1_out) != 1) $finish;
+
+        #1
+        in0 = 1;
+        in1 = 1;
+        #0.001
+        if (check_in0_and_in1_out(in0, in1, in0_and_in1_out) != 1) $finish;
     end
 endmodule
