@@ -23,5 +23,14 @@ module simple_fpga_cvs_tb();
     always #1 clock = !clock;
     always #1.666 osc_300 = !osc_300; // 300 MHz, period is 3.333 ns but the state change frequency is 600 MHz so delay is 1.666
 
+    initial begin
+        $display ("start");
+
+        #100
+
+        $display ("finish");
+        $finish;
+    end
+
     simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_pn, clk_1point5hz);
 endmodule
