@@ -7,13 +7,13 @@ module simple_fpga_cvs(
     output logic in0_or_in1_out,
     output logic not_in2_out,
     input logic osc_300_pn[1:0],
-    output logic clk_1point2hz
+    output logic clk_1point5hz
     );
 
     logic osc_300;
-    logic clk_10mhz;
+    logic clk_100mhz;
     logic clk_fb;
-    logic [22:0] clk_10mhz_count = 0;
+    logic [25:0] clk_100mhz_count = 0;
 
     IBUFDS IBUFDS_inst (
         .O(osc_300),
@@ -24,10 +24,10 @@ module simple_fpga_cvs(
     PLLE3_BASE #(
         .CLKFBOUT_MULT(2),
         .CLKIN_PERIOD(3.333),
-        .CLKOUT0_DIVIDE(60.0)
+        .CLKOUT0_DIVIDE(6.0)
     )
     PLLE3_BASE_inst (
-        .CLKOUT0(clk_10mhz),
+        .CLKOUT0(clk_100mhz),
         .CLKFBOUT(clk_fb),
         .CLKIN(osc_300),
         .CLKFBIN(clk_fb)
@@ -38,13 +38,13 @@ module simple_fpga_cvs(
     assign in0_or_in1_out = in[0] || in[1];
     assign not_in2_out = !in[2];
 
-    // 10000000/2^22 = 2.384185791015625
-    // Bit 22 will toggle at 2.38 Hz hence the real frquency is 2.38/2 = 1.2 Hz
-    assign clk_1point2hz = clk_10mhz_count[22];
+    // 100000000/2^22 = 2.98023223876953125
+    // Bit 25 will toggle at 2.98 Hz hence the real frquency is 2.98/2 = 1.49 Hz
+    assign clk_1point5hz = clk_100mhz_count[25];
 
-    always @(posedge clk_10mhz)
+    always @(posedge clk_100mhz)
     begin
         // Ignore overflow
-        clk_10mhz_count <= clk_10mhz_count + 1;
+        clk_100mhz_count <= clk_100mhz_count + 1;
     end
 endmodule
