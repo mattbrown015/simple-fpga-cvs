@@ -10,7 +10,7 @@ module simple_fpga_cvs_tb();
     parameter osc_300_period = 3.333;
 
     // 'reg' can store a logic state
-    logic clock = 1'b0;
+    logic in[4:0] = '{ 0, 0, 0, 0, 0 };
     logic in0_out;
     logic in0_and_in1_out;
     logic in0_or_in1_out;
@@ -19,8 +19,6 @@ module simple_fpga_cvs_tb();
     logic osc_300_p;
     logic osc_300_n;
     logic clk_1point5hz;
-
-    always #1 clock = !clock;
 
     always begin
         osc_300_p = 1'b0;
@@ -39,5 +37,30 @@ module simple_fpga_cvs_tb();
         $finish;
     end
 
-    simple_fpga_cvs simple_fpga_cvs('{clock, clock, clock, clock, clock}, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_p, osc_300_n, clk_1point5hz);
+    in0_out_tb in0_out_tb(in[0], in0_out);
+
+    simple_fpga_cvs simple_fpga_cvs(in, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_p, osc_300_n, clk_1point5hz);
+endmodule
+
+module in0_out_tb(output logic in0, input in0_out);
+    function check_in0_out(input logic in0, input logic in0_out);
+        $display ("check_in0_out");
+        if (in0_out != in0) begin
+            $display ("in0_out != in0");
+            return 0;
+        end
+        return 1;
+    endfunction
+
+    initial begin
+        #1
+        in0 = 0;
+        #0.001
+        if (check_in0_out(in0, in0_out) != 1) $finish;
+
+        #1
+        in0 = 1;
+        #0.001
+        if (check_in0_out(in0, in0_out) != 1) $finish;
+    end
 endmodule
