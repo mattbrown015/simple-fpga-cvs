@@ -39,6 +39,8 @@ module simple_fpga_cvs_tb();
 
     in0_out_tb in0_out_tb(in[0], in0_out);
     in0_and_in1_out_tb in0_and_in1_out_tb(in[0], in[1], in0_and_in1_out);
+    in0_or_in1_out_tb in0_or_in1_out_tb(in[0], in[1], in0_or_in1_out);
+    not_in2_out_tb not_in2_out_tb(in[2], not_in2_out);
 
     simple_fpga_cvs simple_fpga_cvs(in, in0_out, in0_and_in1_out, in0_or_in1_out, not_in2_out, osc_300_p, osc_300_n, clk_1point5hz);
 endmodule
@@ -100,5 +102,65 @@ module in0_and_in1_out_tb(output logic in0, output logic in1, input in0_and_in1_
         in1 = 1;
         #0.001
         if (check_in0_and_in1_out(in0, in1, in0_and_in1_out) != 1) $finish;
+    end
+endmodule
+
+module in0_or_in1_out_tb(output logic in0, output logic in1, input in0_or_in1_out);
+    function check_in0_or_in1_out(input logic in0, input logic in1, input logic in0_or_in1_out);
+        $display ("check_in0_or_in1_out");
+        if (in0_or_in1_out != (in0 || in1)) begin
+            $display ("in0_or_in1_out != (in0 || in1)");
+            return 0;
+        end
+        return 1;
+    endfunction
+
+    initial begin
+        #20
+        in0 = 0;
+        in1 = 0;
+        #0.001
+        if (check_in0_or_in1_out(in0, in1, in0_or_in1_out) != 1) $finish;
+
+        #1
+        in0 = 1;
+        in1 = 0;
+        #0.001
+        if (check_in0_or_in1_out(in0, in1, in0_or_in1_out) != 1) $finish;
+
+        #1
+        in0 = 0;
+        in1 = 1;
+        #0.001
+        if (check_in0_or_in1_out(in0, in1, in0_or_in1_out) != 1) $finish;
+
+        #1
+        in0 = 1;
+        in1 = 1;
+        #0.001
+        if (check_in0_or_in1_out(in0, in1, in0_or_in1_out) != 1) $finish;
+    end
+endmodule
+
+module not_in2_out_tb(output logic in2, input not_in2_out);
+    function check_not_in2_out(input logic in2, input logic not_in2_out);
+        $display ("check_not_in2_out");
+        if (not_in2_out == in2) begin
+            $display ("not_in2_out == in2");
+            return 0;
+        end
+        return 1;
+    endfunction
+
+    initial begin
+        #30
+        in2 = 0;
+        #0.001
+        if (check_not_in2_out(in2, not_in2_out) != 1) $finish;
+
+        #1
+        in2 = 1;
+        #0.1
+        if (check_not_in2_out(in2, not_in2_out) != 1) $finish;
     end
 endmodule
