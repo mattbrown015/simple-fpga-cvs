@@ -77,7 +77,7 @@ module in0_and_in1_out_tb(output logic in0, output logic in1, input in0_and_in1_
     endfunction
 
     initial begin
-        #1
+        #10
         in0 = 0;
         in1 = 0;
         #0.001
