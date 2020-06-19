@@ -49,3 +49,7 @@ This is a summary of the history of this repo.
 1. Created some sequential logic to create slow, 1.2 Hz, clock from 10 MHz main clock. Used slow clock to flash user LED
 1. Added 300 MHz input oscillator to the constraints. This seems like the correct thing to do although I not sure of the significance yet
 1. Replaced MMCM block with a PLL block because the DRC suggested a PLL was adequate for the job at hand and would make synthesis/implementation better/easier/more flexible
+1. Did some In-System Logic Design Debugging
+   * Mark nets for probing in synthesised schematic
+   * Add debug cores using Set Up Debug wizard
+   * Use Hardware Manager to view debug waveforms
