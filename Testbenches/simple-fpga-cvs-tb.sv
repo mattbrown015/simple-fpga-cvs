@@ -69,8 +69,8 @@ endmodule
 module in0_and_in1_out_tb(output logic in0, output logic in1, input in0_and_in1_out);
     function check_in0_and_in1_out(input logic in0, input logic in1, input logic in0_and_in1_out);
         $display ("check_in0_and_in1_out");
-        if (in0_and_in1_out != in0 && in1) begin
-            $display ("in0_and_in1_out != in0 && in1");
+        if (in0_and_in1_out != (in0 && in1)) begin
+            $display ("in0_and_in1_out != (in0 && in1)");
             return 0;
         end
         return 1;
